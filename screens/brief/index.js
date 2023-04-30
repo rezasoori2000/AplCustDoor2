@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   Button,
   View,
@@ -9,56 +9,61 @@ import {
   ScrollView,
 } from 'react-native';
 
-
-
 function Brief(props) {
   const [data, setData] = useState({});
-  const [error, setError] = useState({});
-  const {nfc} = props.route.params;
+  const [error, setError] = useState(null);
+  const { nfc } = props.route.params;
 
-  const addColonToHex = (hexString) => {
+  const addColonToHex = hexString => {
     return hexString.match(/.{1,2}/g).join(':');
   };
-  useEffect(() => {
-    const fetchData = async () => {
-        try {
-      // const data = await fetch('http://192.168.246.77/DoorScanningApi/NFC?nfc='  + nfc);
-      const data = await fetch('http://alpacnz.co.nz/apl/product_details_by_nfc2.php?nfc='  + addColonToHex(nfc));
-      
-      const json = await data.json();
-      setData(json.product[0]);
-      return json.product[0]; 
-        }
-        catch(ex){
-setError(ex);
-        }
-    };
 
-    const result = fetchData().catch(console.error);
-  //  setError(result);
+
+  const fetchData = async () => {
+    try {
+      const url = 'http://alpacnz.co.nz/apl/product_details_by_nfc2.php?nfc=' +addColonToHex(nfc);
+      const response = await fetch(url);
+      const json = await response.json();
+      setData(json.product[0]);
+    } catch (ex) {
+      setError(ex);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+
+  const memoizedData = useMemo(() => {
+  }, [nfc]);
+
+  useEffect(() => {
+    fetchData();
+    
   }, []);
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
+      {error ? (
+        <Text>{error.message}</Text>
+      ) :(
+        <>
       <View style={styles.header}>
         <Image
-          style={{width: '100%', height: '99%'}}
+          style={{ width: '100%', height: '99%' }}
           source={require('../../assets/img/TOP.png')}
         />
       </View>
       <View style={styles.container}>
         <View style={styles.headerContainer}>
-        {/* <Text style={styles.headerText}>DOOR TAG DETECTED</Text> */}
-{/* todo: remove it */}
-          <Text style={styles.headerText}>DOOR TAG DETECTED. Tag: ${nfc}</Text>
-          {/* <Text style={styles.headerText}>Error: {error}- Data:{JSON.stringify(data)}</Text> */}
-        
+          <Text style={styles.headerText}>DOOR TAG DETECTED</Text>
         </View>
         <View style={styles.infoContainer}>
-          <View style={{alignItems: 'flex-start'}}>
+          <View style={{ alignItems: 'flex-start' }}>
             <Text style={styles.textFactory}>Manufacturer</Text>
-            <View style={{flexDirection: 'row'}}>
-              <Text style={{marginLeft: 10}}>{data.brand}</Text>
+            <View style={{ flexDirection: 'row' }}>
+              <Text style={{ marginLeft: 10 }}>{data.brand}</Text>
             </View>
             <Text style={styles.textFactory}>Door Information</Text>
             <View
@@ -66,7 +71,8 @@ setError(ex);
                 flexDirection: 'column',
                 marginHorizontal: 10,
                 marginVertical: 20,
-              }}>
+              }}
+            >
               <Text style={styles.text}>Design: {data.item_image_design}</Text>
               <Text style={styles.text}>Height: {data.height}</Text>
               <Text style={styles.text}>Width: {data.width}</Text>
@@ -84,7 +90,13 @@ setError(ex);
           <View style={styles.btnImageContainer}>
             <TouchableOpacity
               style={styles.btnClose}
-              onPress={() => props.navigation.navigate('image', {left:data.item_image_left_swing, right:data.item_image_right_swing,color_code:data.color_code})}>
+              onPress={() =>
+                props.navigation.navigate('image', {
+                  left: data.item_image_left_swing,
+                  right: data.item_image_right_swing,
+                  color_code: data.color_code,
+                })
+              }>
               <Text style={styles.btnCloseText}>View Image</Text>
             </TouchableOpacity>
           </View>
@@ -103,7 +115,8 @@ setError(ex);
         </TouchableOpacity>
         <View></View>
       </View>
-    </View>
+      </>
+)}</View>
   );
 }
 const styles = StyleSheet.create({
@@ -119,6 +132,9 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     justifyContent: 'center',
     width: '100%',
+  },
+  scrollView: {
+    flex: 3,
   },
   container: {
     flex: 8,

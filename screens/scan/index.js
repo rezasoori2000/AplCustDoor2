@@ -46,6 +46,7 @@ function Scan(props) {
   const [text, setText] = useState('no');
   const [val, setVal] = useState(0);
 
+
   return (
     <View style={{flex: 1}}>
       <Image

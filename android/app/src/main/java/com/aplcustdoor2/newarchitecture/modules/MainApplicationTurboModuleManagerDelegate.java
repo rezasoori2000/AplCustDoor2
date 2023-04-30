@@ -1,4 +1,4 @@
-package com.aplcustdoor2.newarchitecture.modules;
+package apl.co.nz.aplcustdoor2.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;
