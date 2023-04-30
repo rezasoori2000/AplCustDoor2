@@ -15,12 +15,15 @@ function Brief(props) {
   const { nfc } = props.route.params;
 
   const addColonToHex = hexString => {
+    if (hexString.includes(':'))
+    return hexString;
     return hexString.match(/.{1,2}/g).join(':');
   };
 
 
   const fetchData = async () => {
     try {
+      // const  nfc='04D3D0BAB57280';
       const url = 'http://alpacnz.co.nz/apl/product_details_by_nfc2.php?nfc=' +addColonToHex(nfc);
       const response = await fetch(url);
       const json = await response.json();
@@ -34,9 +37,6 @@ function Brief(props) {
     fetchData();
   }, []);
 
-
-  const memoizedData = useMemo(() => {
-  }, [nfc]);
 
   useEffect(() => {
     fetchData();
