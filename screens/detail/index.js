@@ -105,78 +105,78 @@ function Detail(props) {
             <Text style={styles.textFactory}>Door Information</Text>
             <ScrollView style={styles.scrollView}>
               <View style={styles.infoBox}>
-                <Text style={{fontWeight: 'bold'}}>Design</Text>
-                <Text>{data.item_image_design}</Text>
+                <Text style={styles.headerLabel}>Design</Text>
+                <Text style={styles.label}>{data.item_image_design}</Text>
               </View>
               <View style={styles.infoBox}>
-                <Text style={{fontWeight: 'bold'}}>Height</Text>
-                <Text>{data.height}(mm)</Text>
+                <Text style={styles.headerLabel}>Height</Text>
+                <Text style={styles.label}>{data.height}(mm)</Text>
               </View>
               <View style={styles.infoBox}>
-                <Text style={{fontWeight: 'bold'}}>Width</Text>
-                <Text>{data.width}(mm)</Text>
+                <Text style={styles.headerLabel}>Width</Text>
+                <Text style={styles.label}>{data.width}(mm)</Text>
               </View>
               <View style={styles.infoBox}>
-                <Text style={{fontWeight: 'bold'}}>Interior Colour</Text>
-                <Text>{data.inside_color_finish}</Text>
+                <Text style={styles.headerLabel}>Interior Colour</Text>
+                <Text style={styles.label}>{data.inside_color_finish}</Text>
               </View>
               <View style={styles.infoBox}>
-                <Text style={{fontWeight: 'bold'}}>Exterior Colour</Text>
-                <Text>{data.outside_color_finish}</Text>
+                <Text style={styles.headerLabel}>Exterior Colour</Text>
+                <Text style={styles.label}>{data.outside_color_finish}</Text>
               </View>
               <View style={styles.infoBox}>
-                <Text style={{fontWeight: 'bold'}}>Reference</Text>
-                <Text>{data.reference_number}</Text>
+                <Text style={styles.headerLabel}>Reference</Text>
+                <Text style={styles.label}>{data.reference_number}</Text>
               </View>
               <View style={styles.infoBox}>
-                <Text style={{fontWeight: 'bold'}}>Year Manufactured</Text>
-                <Text>{data.year_manufactured}</Text>
+                <Text style={styles.headerLabel}>Year Manufactured</Text>
+                <Text style={styles.label}>{data.year_manufactured}</Text>
               </View>
               <View style={styles.infoBox}>
-                <Text style={{fontWeight: 'bold'}}>Part Number</Text>
-                <Text>{data.part_number}</Text>
+                <Text style={styles.headerLabel}>Part Number</Text>
+                <Text style={styles.label}>{data.part_number}</Text>
               </View>
               <View style={styles.infoBox}>
-                <Text style={{fontWeight: 'bold'}}>
+                <Text style={styles.headerLabel}>
                   Swing (Viewed from Outside)
                 </Text>
-                <Text>{data.viewed_from_outside}</Text>
+                <Text style={styles.label}>{data.viewed_from_outside}</Text>
               </View>
               <View style={styles.infoBox}>
-                <Text style={{fontWeight: 'bold'}}>Open Direction</Text>
-                <Text>{data.open_direction}</Text>
+                <Text style={styles.headerLabel}>Open Direction</Text>
+                <Text style={styles.label}>{data.open_direction}</Text>
               </View>
               <View style={styles.infoBox}>
-                <Text style={{fontWeight: 'bold'}}>Basket</Text>
-                <Text>{data.backset}</Text>
+                <Text style={styles.headerLabel}>Basket</Text>
+                <Text style={styles.label}>{data.backset}</Text>
               </View>
               <View style={styles.infoBox}>
-                <Text style={{fontWeight: 'bold'}}>Lockset</Text>
-                <Text>{data.lockset}</Text>
+                <Text style={styles.headerLabel}>Lockset</Text>
+                <Text style={styles.label}>{data.lockset}</Text>
               </View>
               <View style={styles.infoBox}>
-                <Text style={{fontWeight: 'bold'}}>Handle Position</Text>
-                <Text>{data.handle_position}</Text>
+                <Text style={styles.headerLabel}>Handle Position</Text>
+                <Text style={styles.label}>{data.handle_position}</Text>
               </View>
               <View style={styles.infoBox}>
-                <Text style={{fontWeight: 'bold'}}>Frame</Text>
-                <Text>{data.frame}</Text>
+                <Text style={styles.headerLabel}>Frame</Text>
+                <Text style={styles.label}>{data.frame}</Text>
               </View>
               <View style={styles.infoBox}>
-                <Text style={{fontWeight: 'bold'}}>Accessories</Text>
-                <Text>{data.accessories}</Text>
+                <Text style={styles.headerLabel}>Accessories</Text>
+                <Text style={styles.label}>{data.accessories}</Text>
               </View>
               <View style={styles.infoBox}>
-                <Text style={{fontWeight: 'bold'}}>Glass Type</Text>
-                <Text>{data.glass_type}</Text>
+                <Text style={styles.headerLabel}>Glass Type</Text>
+                <Text style={styles.label}>{data.glass_type}</Text>
               </View>
               <View style={styles.infoBox}>
-                <Text style={{fontWeight: 'bold'}}>Glass Size (mm x mm)</Text>
-                <Text>{data.glass_size}</Text>
+                <Text style={styles.headerLabel}>Glass Size (mm x mm)</Text>
+                <Text style={styles.label}>{data.glass_size}</Text>
               </View>
               <View style={styles.infoBox}>
-                <Text style={{fontWeight: 'bold'}}>Oerder Number</Text>
-                <Text>{data.order_number}</Text>
+                <Text style={styles.headerLabel}>Oerder Number</Text>
+                <Text style={styles.label}>{data.order_number}</Text>
               </View>
             </ScrollView>
           </View>
@@ -194,6 +194,8 @@ function Detail(props) {
 }
 const styles = StyleSheet.create({
   header: {flex: 1, alignItems: 'center', justifyContent: 'flex-start'},
+  headerLabel:{fontWeight: 'bold',color:'black'},
+  label:{color:'black'},
   headerContainer: {
     flex: 1,
     justifyContent: 'flex-end',

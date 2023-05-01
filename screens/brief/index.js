@@ -179,7 +179,10 @@ const styles = StyleSheet.create({
   },
   btnCloseText: {color: 'white'},
 
-  text: {marginVertical: 10},
+  text: {marginVertical: 10,
+    color:'black'
+  
+  },
   btnClose: {
     width: '40%',
     height: 40,
