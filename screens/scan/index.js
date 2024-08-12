@@ -9,7 +9,7 @@ import {
   Linking,
    
 } from 'react-native';
-
+import FastImage from 'react-native-fast-image'; 
 NfcManager.start();
 
 function Scan(props) {
@@ -48,10 +48,15 @@ function Scan(props) {
 
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center',}}>
       <Image
         style={styles.main}
-        source={require('../../assets/img/Scan.png')}
+        source={require('../../assets/img/Scan-blank.png')}
+      />
+      <FastImage
+        source={require('../../assets/img/sonar.gif')} // Update with your actual path
+        style={styles.gif}
+        resizeMode={FastImage.resizeMode.contain}
       />
       <View style={{zIndex: 2, flex: 1, marginTop: -150, flexDirection: 'row'}}>
         {/* todo: remove it 
@@ -79,8 +84,16 @@ function Scan(props) {
 const styles = StyleSheet.create({
   main: {
     width: '100%',
-    height: '99%',
+    height: '100%',
     zIndex: 1,
+    position:'absolute',
+  },
+  gif: {
+    width: 180, 
+    height: 180,
+    position: 'absolute',
+    bottom: 0,
+    zIndex: 2,
   },
 
   buttons: {
